@@ -17,7 +17,7 @@ type BalanceESDT struct {
 	Address MvxAddress
 	Balance *p.Decimal
 }
-
+//
 var (
 	//TokenIdentifiers
 	//ESDT Tokens
