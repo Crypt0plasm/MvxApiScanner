@@ -1,6 +1,8 @@
 package MvxApiScanner
 
 import (
+	p "Firefly-APD"
+	mt "SuperMath"
 	"fmt"
 	"io"
 	"log"
@@ -46,4 +48,9 @@ func MyCopy(src, dst string) (int64, error) {
 	defer destination.Close()
 	nBytes, err := io.Copy(destination, source)
 	return nBytes, err
+}
+
+func AtomicUnitsToPointDecimal(Input *p.Decimal) *p.Decimal {
+	DecimalDivided := mt.TruncateCustom(mt.DIVxc(Input, p.NFS("1000000000000000000")), 18)
+	return DecimalDivided
 }
