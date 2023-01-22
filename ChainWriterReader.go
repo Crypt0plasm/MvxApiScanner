@@ -91,7 +91,7 @@ func WriteChainBalanceESDT(Name string, List []BalanceESDT) {
 //
 // WriteList writes the strings from the slice to an external file
 // as Name can be used "File.txt" as the output file.
-func WriteChainTrueBalanceSFT(Name string, List []TrueBalanceSFT) {
+func WriteChainTrueBalanceSFT(Name string, List []TrueBalanceESDT) {
 	f, err := os.Create(Name)
 
 	if err != nil {
@@ -131,6 +131,7 @@ func WriteChainVestaSplit(Name string, List []VestaSplit) {
 		_, _ = fmt.Fprintln(f, v)
 	}
 	err = f.Close()
+
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -146,6 +147,33 @@ func WriteChainVestaSplit(Name string, List []VestaSplit) {
 // WriteList writes the strings from the slice to an external file
 // as Name can be used "File.txt" as the output file.
 func WriteChainVestaPool(Name string, List []VestaPool) {
+	f, err := os.Create(Name)
+
+	if err != nil {
+		fmt.Println(err)
+		_ = f.Close()
+		return
+	}
+
+	for _, v := range List {
+		_, _ = fmt.Fprintln(f, v)
+	}
+	err = f.Close()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("file written successfully")
+	return
+}
+
+// WriteChainVestaPool ================================================
+//
+// # WriteChainVestaPool Function
+//
+// WriteList writes the strings from the slice to an external file
+// as Name can be used "File.txt" as the output file.
+func WriteChainMvxAddresses(Name string, List []MvxAddress) {
 	f, err := os.Create(Name)
 
 	if err != nil {

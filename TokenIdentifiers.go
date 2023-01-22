@@ -26,8 +26,8 @@ type BalanceESDT struct {
 	Balance string     `json:"balance"`
 }
 
-type TrueBalanceSFT struct {
-	AB  BalanceSFT
+type TrueBalanceESDT struct {
+	AB  BalanceESDT
 	KYC bool
 }
 
