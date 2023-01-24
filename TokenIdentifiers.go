@@ -125,6 +125,8 @@ var (
 	CD09Oreta    = SFT("DHCD-bc9963-09")
 	CD10Binar    = SFT("DHCD-bc9963-0a")
 	VestaGold    = SFT("VESTAXDAO-e6c48c-01")
+	VestaSilver  = SFT("VESTAXDAO-e6c48c-02")
+	VestaBronze  = SFT("VESTAXDAO-e6c48c-03")
 
 	//NFTs
 	SnakeNFT = SFT("DEMIOU-6d1b5c")
@@ -147,9 +149,12 @@ var (
 	Krogan         = MvxAddress("erd1qqqqqqqqqqqqqpgq8xwzu82v8ex3h4ayl5lsvxqxnhecpwyvwe0sf2qj4e")
 
 	//SupercietyVaults SC
-	SupercietyVaultSnake = MvxAddress("erd1qqqqqqqqqqqqqpgql9zuu0r5pj9xcx94y08wujmwkn2hcuns27rsdcmzf0")
-	SupercietyVaultCD    = MvxAddress("erd1qqqqqqqqqqqqqpgqqkyp6auk2h7y6sdj2w55qp8zad5ddurn27rs47vs2n")
-	SupercietyVaultVesta = MvxAddress("erd1qqqqqqqqqqqqqpgq9ez0cfmq7l9t7s800mdfagkekqj3g9dv27rsqjagnv")
+	SnakeDAO          = MvxAddress("erd1qqqqqqqqqqqqqpgql9zuu0r5pj9xcx94y08wujmwkn2hcuns27rsdcmzf0")
+	CodingDivisionDAO = MvxAddress("erd1qqqqqqqqqqqqqpgqqkyp6auk2h7y6sdj2w55qp8zad5ddurn27rs47vs2n")
+	VestaDAO          = MvxAddress("erd1qqqqqqqqqqqqqpgq9ez0cfmq7l9t7s800mdfagkekqj3g9dv27rsqjagnv")
+	DHV1              = MvxAddress("erd1qqqqqqqqqqqqqpgqkpcm6xqrsfr8gzlh7pdlc2d6gfvfe2j827rstr8jwd")
+	DHV2              = MvxAddress("erd1qqqqqqqqqqqqqpgq2k6pww09cegpgqpj5yctrx4tsxlry99g27rslvxyxm")
+	DHV3              = MvxAddress("erd1qqqqqqqqqqqqqpgqrcd2dx3h5zpv6ngf7qgej95dkhejwv7m27rsxvf78a")
 
 	//Addresses
 	KosonicTreasury = MvxAddress("erd1h0ymqdgl6vf0pud0klz5nstwra3sxj06afaj86x0pg7p52dvve9qqtg7x4")
