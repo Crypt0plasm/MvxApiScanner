@@ -90,46 +90,68 @@ func RewardsComputerIntegerChainMultiplication(Input []BalanceSFT, Reward string
 // [A]03         DecimalChainAdder
 //
 // Adds two BalanceESDT Files, removing duplicate addresses and summing their balances.
-func DecimalChainAdder(S1, S2 []BalanceESDT) []BalanceESDT {
+func DecimalChainAdder(S1, S2 []BalanceESDT) (Output []BalanceESDT) {
 	var (
 		ValueS1, ValueS2, TotalValue *p.Decimal
 	)
-	AllSlice := append(S1, S2...)
 
-	//2.    Make a slice with all Elrond Address (will contain duplicate Elrond Addresses)
-	//      basically removes the balance value.
-	ElrondSlice := make([]MvxAddress, len(AllSlice))
+	if CheckIfChainIzVoid(S1) == true {
+		Output = S2
+	} else if CheckIfChainIzVoid(S2) == true {
+		Output = S1
+	} else {
+		AllSlice := append(S1, S2...)
 
-	for i := 0; i < len(AllSlice); i++ {
-		ElrondSlice[i] = AllSlice[i].Address
+		//2.    Make a slice with all Elrond Address (will contain duplicate Elrond Addresses)
+		//      basically removes the balance value.
+		ElrondSlice := make([]MvxAddress, len(AllSlice))
+
+		for i := 0; i < len(AllSlice); i++ {
+			ElrondSlice[i] = AllSlice[i].Address
+		}
+
+		Unique := RemoveDuplicateMvxAddresses(ElrondSlice)
+		//fmt.Println("Unique LEN is", Unique)
+		Output = make([]BalanceESDT, len(Unique))
+
+		for i := 0; i < len(Unique); i++ {
+			for j := 0; j < len(S1); j++ {
+				if Unique[i] == S1[j].Address {
+					ValueS1 = p.NFS(S1[j].Balance)
+					break
+				} else {
+					ValueS1 = p.NFS("0")
+				}
+			}
+
+			for k := 0; k < len(S2); k++ {
+				if Unique[i] == S2[k].Address {
+					ValueS2 = p.NFS(S2[k].Balance)
+					break
+				} else {
+					ValueS2 = p.NFS("0")
+				}
+			}
+			//fmt.Println("ValueS1 is", ValueS1)
+			//fmt.Println("ValueS2 is", ValueS2)
+			TotalValue = mt.ADDxc(ValueS1, ValueS2)
+
+			Output[i].Address = Unique[i]
+			Output[i].Balance = mt.DTS(TotalValue)
+		}
 	}
+	return Output
+}
 
-	Unique := RemoveDuplicateMvxAddresses(ElrondSlice)
-	Output := make([]BalanceESDT, len(Unique))
+func MultipleDecimalChainAdder(S1 []BalanceESDT, AllChains ...[]BalanceESDT) []BalanceESDT {
+	var Output []BalanceESDT
+	for i := 0; i < len(AllChains); i++ {
+		if i == 0 {
+			Output = DecimalChainAdder(S1, AllChains[0])
 
-	for i := 0; i < len(Unique); i++ {
-		for j := 0; j < len(S1); j++ {
-			if Unique[i] == S1[j].Address {
-				ValueS1 = p.NFS(S1[j].Balance)
-				break
-			} else {
-				ValueS1 = p.NFS("0")
-			}
+		} else {
+			Output = DecimalChainAdder(Output, AllChains[i])
 		}
-
-		for k := 0; k < len(S2); k++ {
-			if Unique[i] == S2[k].Address {
-				ValueS2 = p.NFS(S2[k].Balance)
-				break
-			} else {
-				ValueS2 = p.NFS("0")
-			}
-		}
-
-		TotalValue = mt.ADDxc(ValueS1, ValueS2)
-
-		Output[i].Address = Unique[i]
-		Output[i].Balance = mt.DTS(TotalValue)
 	}
 	return Output
 }
@@ -141,6 +163,51 @@ func IntegerChainAdder(S1, S2 []BalanceSFT) []BalanceESDT {
 	S1ESDT := ConvertIntegerSFTtoESDTChain(S1)
 	S2ESDT := ConvertIntegerSFTtoESDTChain(S2)
 	return DecimalChainAdder(S1ESDT, S2ESDT)
+}
+
+func VestaPoolAdder(S1, S2 []VestaPool) []VestaPool {
+	var (
+		Result []VestaPool
+	)
+
+	L1 := len(S1)
+	L2 := len(S2)
+
+	if L1 == L2 {
+		SummedChain := make([]VestaPool, L1)
+		for i := 0; i < L1; i++ {
+			SummedChain[i].VEGLD = mt.ADDxc(S1[i].VEGLD, S2[i].VEGLD)
+			SummedChain[i].Token = mt.ADDxc(S1[i].Token, S2[i].Token)
+		}
+		Result = SummedChain
+	} else if L1 < L2 {
+		SummedChain := make([]VestaPool, L1)
+		for i := 0; i < L1; i++ {
+			SummedChain[i].VEGLD = mt.ADDxc(S1[i].VEGLD, S2[i].VEGLD)
+			SummedChain[i].Token = mt.ADDxc(S1[i].Token, S2[i].Token)
+		}
+		Tail1 := S2[L1:]
+		Result = append(SummedChain, Tail1...)
+	} else if L1 > L2 {
+		SummedChain := make([]VestaPool, L2)
+		for i := 0; i < L2; i++ {
+			SummedChain[i].VEGLD = mt.ADDxc(S1[i].VEGLD, S2[i].VEGLD)
+			SummedChain[i].Token = mt.ADDxc(S1[i].Token, S2[i].Token)
+		}
+		Tail2 := S1[L2:]
+		Result = append(SummedChain, Tail2...)
+	}
+	return Result
+}
+
+func MultipleVestaPoolAdder(S1 []VestaPool, AllPools ...[]VestaPool) []VestaPool {
+	RestSumElement := VestaPool{VEGLD: p.NFS("0"), Token: p.NFS("0")}
+	RestSum := []VestaPool{RestSumElement}
+	for _, item := range AllPools {
+		RestSum = VestaPoolAdder(RestSum, item)
+	}
+	FinalSum := VestaPoolAdder(S1, RestSum)
+	return FinalSum
 }
 
 // PercentualSplitter ================================================================================
@@ -344,4 +411,13 @@ func ConvertToBulkCSV(OutputName string, InputChain []BalanceESDT) {
 			return
 		}
 	}
+}
+
+func CheckIfChainIzVoid(Input []BalanceESDT) (Output bool) {
+	if len(Input) == 1 && Input[0].Address == AH && Input[0].Balance == "0" {
+		Output = true
+	} else {
+		Output = false
+	}
+	return Output
 }

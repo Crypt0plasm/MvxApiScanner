@@ -4,7 +4,9 @@ import (
 	p "Firefly-APD"
 	mt "SuperMath"
 	"encoding/json"
+	"os"
 	"strconv"
+	"strings"
 )
 
 // ======================================================================================================================
@@ -24,7 +26,7 @@ import (
 // 	[C]03         Make256NFTString				Makes the 20 Digit Base NFT String
 // 	[C]04         MakeTotalNFTString			Makes the Final NFT Identifiers in a slice of String
 //
-//
+//	[D]01		  ReadOmniscientFile
 //
 //
 //
@@ -227,6 +229,123 @@ func MakeTotalNFTString(Size int64) []string {
 				Output = append(Output, ToAppend...)
 			}
 		}
+	}
+	return Output
+}
+
+//
+
+func TripleDigitDesignation(Number int, Designation string) (StringName string) {
+	if Number < 10 {
+		StringName = Designation + "00" + strconv.Itoa(Number)
+	} else if Number >= 10 && Number < 100 {
+		StringName = Designation + "0" + strconv.Itoa(Number)
+	} else {
+		StringName = Designation + strconv.Itoa(Number)
+	}
+	return
+}
+
+func IzFile(Path, Filename string) bool {
+	info, err := os.Stat(Path + Filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
+}
+
+func ReadOmniscientSS(Path, Filename string) []BalanceSFT {
+	var (
+		MainUnit BalanceSFT
+		Output   []BalanceSFT
+	)
+
+	ProcessLine := func(Line string) BalanceSFT {
+		var (
+			Unit BalanceSFT
+		)
+		LineString := strings.ReplaceAll(Line, "\"", "")
+		SeparatedLineStringSlice := strings.Split(LineString, ",")
+		Unit.Address = MvxAddress(SeparatedLineStringSlice[0])
+		Unit.Balance = SeparatedLineStringSlice[1]
+		return Unit
+	}
+
+	StringSlice := ReadFile(Path + Filename)
+	for i := 0; i < len(StringSlice); i++ {
+		MainUnit = ProcessLine(StringSlice[i])
+		Output = append(Output, MainUnit)
+	}
+	return Output
+}
+
+func ReadVestaPoolSnapshot(Path, Filename string) []VestaPool {
+	var Output []VestaPool
+	if IzFile(Path, Filename) == true {
+		Output = ReadVestaPoolChain(Path, Filename)
+	}
+	return Output
+}
+
+func ReadBalanceChain(Path, Filename string) []BalanceESDT {
+	var Output []BalanceESDT
+	if IzFile(Path, Filename) == true {
+		Output = ReadChain(Path, Filename)
+	} else {
+		Output = AdditionNeutralBalanceESDTChain
+	}
+	return Output
+}
+
+func ReadVestaPoolChain(Path, Filename string) []VestaPool {
+	var (
+		MainUnit VestaPool
+		Output   []VestaPool
+	)
+	ProcessLine := func(Line string) VestaPool {
+		var (
+			Unit VestaPool
+		)
+		LineString := strings.ReplaceAll(Line, "{", "")
+		LineString2 := strings.ReplaceAll(LineString, "}", "")
+		SeparatedLineStringSlice := strings.Split(LineString2, " ")
+		Unit.VEGLD = p.NFS(SeparatedLineStringSlice[0])
+		Unit.Token = p.NFS(SeparatedLineStringSlice[1])
+		return Unit
+	}
+
+	StringSlice := ReadFile(Path + Filename)
+	for i := 0; i < len(StringSlice); i++ {
+		MainUnit = ProcessLine(StringSlice[i])
+		Output = append(Output, MainUnit)
+	}
+	return Output
+}
+
+func ReadChain(Path, Filename string) []BalanceESDT {
+	var (
+		MainUnit BalanceESDT
+		Output   []BalanceESDT
+	)
+
+	ProcessLine := func(Line string) BalanceESDT {
+		var (
+			Unit BalanceESDT
+		)
+		LineString := strings.ReplaceAll(Line, "{", "")
+		LineString2 := strings.ReplaceAll(LineString, "}", "")
+		SeparatedLineStringSlice := strings.Split(LineString2, " ")
+		Unit.Address = MvxAddress(SeparatedLineStringSlice[0])
+		Unit.Balance = SeparatedLineStringSlice[1]
+		return Unit
+	}
+
+	TotalPath := Path + Filename
+
+	StringSlice := ReadFile(TotalPath)
+	for i := 0; i < len(StringSlice); i++ {
+		MainUnit = ProcessLine(StringSlice[i])
+		Output = append(Output, MainUnit)
 	}
 	return Output
 }

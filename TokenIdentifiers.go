@@ -155,8 +155,14 @@ var (
 	DHV1              = MvxAddress("erd1qqqqqqqqqqqqqpgqkpcm6xqrsfr8gzlh7pdlc2d6gfvfe2j827rstr8jwd")
 	DHV2              = MvxAddress("erd1qqqqqqqqqqqqqpgq2k6pww09cegpgqpj5yctrx4tsxlry99g27rslvxyxm")
 	DHV3              = MvxAddress("erd1qqqqqqqqqqqqqpgqrcd2dx3h5zpv6ngf7qgej95dkhejwv7m27rsxvf78a")
+	DHV4              = MvxAddress("erd1qqqqqqqqqqqqqpgqc0e2y2fsv8mcxja6vqz7k7wh33mtclj027rsxry8a2")
 
 	//Addresses
+	Synchronic      = MvxAddress("erd16yr7tyck8d4ewp68uzd29jxwa3kj57nuhm6z37lxcp6w6xx8vemsnl5paf")
 	KosonicTreasury = MvxAddress("erd1h0ymqdgl6vf0pud0klz5nstwra3sxj06afaj86x0pg7p52dvve9qqtg7x4")
 	Hefe            = MvxAddress("erd1vj40fxw0yah34mmdxly7l28w097ju6hf8pczpcdxs05n2vyx8hcspyxm2c")
+	AH              = MvxAddress("erd1h6lh2tqjscs4n69c4w4wunu4qw2mz708qn8mqk4quzsyz2syn0aq5gu64s")
+
+	AdditionNeutralBalanceESDT      = BalanceESDT{Address: AH, Balance: "0"}
+	AdditionNeutralBalanceESDTChain = []BalanceESDT{AdditionNeutralBalanceESDT}
 )
