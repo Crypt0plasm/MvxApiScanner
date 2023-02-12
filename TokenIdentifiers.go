@@ -158,10 +158,18 @@ var (
 	DHV4              = MvxAddress("erd1qqqqqqqqqqqqqpgqc0e2y2fsv8mcxja6vqz7k7wh33mtclj027rsxry8a2")
 
 	//Addresses
-	Synchronic      = MvxAddress("erd16yr7tyck8d4ewp68uzd29jxwa3kj57nuhm6z37lxcp6w6xx8vemsnl5paf")
+
 	KosonicTreasury = MvxAddress("erd1h0ymqdgl6vf0pud0klz5nstwra3sxj06afaj86x0pg7p52dvve9qqtg7x4")
 	Hefe            = MvxAddress("erd1vj40fxw0yah34mmdxly7l28w097ju6hf8pczpcdxs05n2vyx8hcspyxm2c")
+	Florian         = MvxAddress("erd1005uhtflxhql2cqyvw2y064k3fdjtjpcku0g3z25lr9znx8sd26sjulgt0")
 	AH              = MvxAddress("erd1h6lh2tqjscs4n69c4w4wunu4qw2mz708qn8mqk4quzsyz2syn0aq5gu64s")
+	Synchronic      = MvxAddress("erd16yr7tyck8d4ewp68uzd29jxwa3kj57nuhm6z37lxcp6w6xx8vemsnl5paf")
+	Bolog           = MvxAddress("erd1tztluf08g90max7jkr4jtac9w5qv7qacgkhh57q9nz2erq9y2p3sd5njkg")
+	ArcSolar        = MvxAddress("erd1u2udun8fkfc2jspmhxzu8eqvjtwja3anngcxyh4jaym4trwdqewqs5jexa")
+	Elanu           = MvxAddress("erd1phh72v0evuphdk8uwsg9ph9mr3gm8ucklvpr808ky3jqnnf3uqkqn6n8xg")
+	Hladiuck        = MvxAddress("erd1f33jfe2cacr8c9gxgsu77jgzk6j53p40jnpdvwkhsllafvfxqx4swge7c5")
+	Zimbru          = MvxAddress("erd1pg9zhgkcymzltf0j3pfy4jkhavgujpkf9xn0uxxnh4gl6xta3xpqshhgkg")
+	TelegramMod     = MvxAddress("erd1neenvm7z5e65gaqhagcezgahpqfvwcm0anpzq9c6tkm75u2kynuqkfjam4")
 
 	AdditionNeutralBalanceESDT      = BalanceESDT{Address: AH, Balance: "0"}
 	AdditionNeutralBalanceESDTChain = []BalanceESDT{AdditionNeutralBalanceESDT}
