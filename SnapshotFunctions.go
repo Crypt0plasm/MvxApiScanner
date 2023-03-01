@@ -18,7 +18,8 @@ import (
 //  [A]01b        SnapshotSFTChain				Snapshot SFT Chain
 // 	[A]02         SnapshotDecimalChain			Creates a Chain of Decimal values (ESDT Values)
 //
-// 	[B]01         GetAddressAmount				Gets the Amount linked to a given address from an Integer Chain
+// 	[B]01         GetAddressIntegerAmount		Gets the Amount linked to a given address from an Integer Chain
+// 	[B]01b        GetAddressDecimalAmount		Gets the Amount linked to a given address from an Integer Chain
 // 	[B]02         GetAddressESDTAmount			Gets the Amount of ESDT Token from a given Address
 //
 // 	[C]01         MakeNFTBaseString				Makes the Base NFT String
@@ -91,11 +92,29 @@ func GetAddressIntegerAmount(Addy MvxAddress, Chain []BalanceSFT) string {
 	return Result
 }
 
+// GetAddressDecimalAmount =============================================================================================
+//
+// [B]01b         GetAddressAmount
+//
+//	Gets the Amount for a given address in an Decimal Chain
+func GetAddressDecimalAmount(Addy MvxAddress, Chain []BalanceESDT) string {
+	var Result string
+	for i := 0; i < len(Chain); i++ {
+		if Chain[i].Address == Addy {
+			Result = Chain[i].Balance
+			break
+		} else {
+			Result = "0"
+		}
+	}
+	return Result
+}
+
 // GetAddressESDTAmount =============================================================================================
 //
 // [B]02         GetAddressESDTAmount
 //
-//	Gets the Amount for a given address in an Integer Chain
+//	Gets the Amount of ESDT Token from a given Address
 func GetAddressESDTAmount(Addy MvxAddress, Token ESDT) *p.Decimal {
 	var (
 		ScannedJSON ESDTSuperStructure
