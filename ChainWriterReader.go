@@ -193,3 +193,24 @@ func WriteChainMvxAddresses(Name string, List []MvxAddress) {
 	fmt.Println("file written successfully")
 	return
 }
+
+func WriteStringChain(Name string, List []string) {
+	f, err := os.Create(Name)
+
+	if err != nil {
+		fmt.Println(err)
+		_ = f.Close()
+		return
+	}
+
+	for _, v := range List {
+		_, _ = fmt.Fprintln(f, v)
+	}
+	err = f.Close()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("file written successfully")
+	return
+}

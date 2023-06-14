@@ -152,10 +152,13 @@ var (
 	SnakeDAO          = MvxAddress("erd1qqqqqqqqqqqqqpgql9zuu0r5pj9xcx94y08wujmwkn2hcuns27rsdcmzf0")
 	CodingDivisionDAO = MvxAddress("erd1qqqqqqqqqqqqqpgqqkyp6auk2h7y6sdj2w55qp8zad5ddurn27rs47vs2n")
 	VestaDAO          = MvxAddress("erd1qqqqqqqqqqqqqpgq9ez0cfmq7l9t7s800mdfagkekqj3g9dv27rsqjagnv")
-	DHV1              = MvxAddress("erd1qqqqqqqqqqqqqpgqkpcm6xqrsfr8gzlh7pdlc2d6gfvfe2j827rstr8jwd")
-	DHV2              = MvxAddress("erd1qqqqqqqqqqqqqpgq2k6pww09cegpgqpj5yctrx4tsxlry99g27rslvxyxm")
-	DHV3              = MvxAddress("erd1qqqqqqqqqqqqqpgqrcd2dx3h5zpv6ngf7qgej95dkhejwv7m27rsxvf78a")
-	DHV4              = MvxAddress("erd1qqqqqqqqqqqqqpgqc0e2y2fsv8mcxja6vqz7k7wh33mtclj027rsxry8a2")
+	BloodshedDAO      = MvxAddress("erd1qqqqqqqqqqqqqpgqeaerwft7yd9ghjce8kme5fnpj49exjxm27rs2gtht5")
+	XBunniesDAO       = MvxAddress("erd1qqqqqqqqqqqqqpgqwejdnhef7zwsgfw07d9kd8k4l2gs8syn27rsfd4erz")
+	DHV0              = MvxAddress("erd1qqqqqqqqqqqqqpgqkpcm6xqrsfr8gzlh7pdlc2d6gfvfe2j827rstr8jwd") //Main DH Private Vault
+	DHV1              = MvxAddress("erd1qqqqqqqqqqqqqpgq2k6pww09cegpgqpj5yctrx4tsxlry99g27rslvxyxm") //Coding Division Private Vault
+	DHV2              = MvxAddress("erd1qqqqqqqqqqqqqpgqrcd2dx3h5zpv6ngf7qgej95dkhejwv7m27rsxvf78a") //VestaX.Finance Private Vault
+	DHV3              = MvxAddress("erd1qqqqqqqqqqqqqpgqc0e2y2fsv8mcxja6vqz7k7wh33mtclj027rsxry8a2") //LiquidStake Private Fee Vault (DEX Fee Vault)
+	DHV4              = MvxAddress("erd1qqqqqqqqqqqqqpgqu43elpctq9kce7e2nak6vxdlwrqrkft027rsek5fsc") //GSC Private Fee Vault
 
 	//Addresses
 
