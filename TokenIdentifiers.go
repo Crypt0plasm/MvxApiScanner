@@ -160,6 +160,11 @@ var (
 	DHV3              = MvxAddress("erd1qqqqqqqqqqqqqpgqc0e2y2fsv8mcxja6vqz7k7wh33mtclj027rsxry8a2") //LiquidStake Private Fee Vault (DEX Fee Vault)
 	DHV4              = MvxAddress("erd1qqqqqqqqqqqqqpgqu43elpctq9kce7e2nak6vxdlwrqrkft027rsek5fsc") //GSC Private Fee Vault
 
+	DH           	  = MvxAddress("erd1qrp72xhyn6vd5jrsvzkx32cecszuvh9yka0escx7j977cw8yk77qyup3zq") //Demi External Farmer
+	DH_CD        	  = MvxAddress("erd1qe8kudxwzen5hgxcmws9jrrtg6au97j974gtgrml6amnzlmmcetsv02gps") //CD External Farmer
+	DH_Vesta     	  = MvxAddress("erd1ea7hlq9zuvjgqyqk3px43ehp9vxpql64yqzvpsvmnfgur4szwgjqcdenkt") //Vesta External Farmer                                                        //Vesta External Farmer
+	DH_Bloodshed 	  = MvxAddress("erd16f3qfmpdhcgdv2ygwj43n2x08vnmfckvq8z976cs85ued5tx003scj60vd") //Bloodhsed External Farmer
+
 	//Addresses
 
 	KosonicTreasury = MvxAddress("erd1h0ymqdgl6vf0pud0klz5nstwra3sxj06afaj86x0pg7p52dvve9qqtg7x4")
