@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 // OnPage Function Snapshots Link and returns String
@@ -53,4 +54,15 @@ func MyCopy(src, dst string) (int64, error) {
 func AtomicUnitsToPointDecimal(Input *p.Decimal) *p.Decimal {
 	DecimalDivided := mt.TruncateCustom(mt.DIVxc(Input, p.NFS("1000000000000000000")), 18)
 	return DecimalDivided
+}
+
+func ConvertStringToInt64(Input string) int64 {
+	Output, _ := strconv.ParseInt(Input, 10, 64)
+
+	//if err != nil {
+	//	fmt.Println("Error:", err)
+	//} else {
+	//	fmt.Println("Converted int64:", Output)
+	//}
+	return Output
 }

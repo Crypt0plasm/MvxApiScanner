@@ -34,6 +34,7 @@ import (
 // [C]02		ConvertIntegerSFTtoESDTChain					Converts a SFT Chain to ESDT Chain
 // [C]02b		ConvertIntegerSFTtoESDT							Converts a SFT to ESDT
 //
+// [D]01		ComputeExceptionAddress							Checks if an address is an exception by comparing with an exception list
 //
 //
 
@@ -420,4 +421,37 @@ func CheckIfChainIzVoid(Input []BalanceESDT) (Output bool) {
 		Output = false
 	}
 	return Output
+}
+
+// [D]01	ComputeExceptionAddress
+// Checks if an address is an exception by comparing with an exception list
+// Returen True if address is in Exception List
+func ComputeExceptionAddress(Addy MvxAddress, ExceptionList []MvxAddress) bool {
+	var Result = false
+	for i := 0; i < len(ExceptionList); i++ {
+		if Addy == ExceptionList[i] {
+			Result = true
+		}
+	}
+	return Result
+}
+
+// [D]02	MakeExChainFromBalanceESDT
+// Using an Exception Chain, trimmes a chain of balance ESDT, by removing the exceptions.
+// Exceptions are defined in ExceptionChain
+
+func MakeExChainFromBalanceESDT(InputChain []BalanceESDT, ExceptionChain []MvxAddress) []BalanceESDT {
+	var (
+		TrimmedChain []BalanceESDT
+		Unit         BalanceESDT
+	)
+	for i := 0; i < len(InputChain); i++ {
+		if ComputeExceptionAddress(InputChain[i].Address, ExceptionChain) == false {
+			Unit.Address = InputChain[i].Address
+			Unit.Balance = InputChain[i].Balance
+
+			TrimmedChain = append(TrimmedChain, Unit)
+		}
+	}
+	return TrimmedChain
 }

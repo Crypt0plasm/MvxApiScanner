@@ -101,7 +101,10 @@ var (
 	//TokenIdentifiers
 	//ESDT Tokens
 	WrappedEGLD = ESDT("WEGLD-bd4d79")
-	vestaEGLD   = ESDT("VEGLD-2b9319")
+	VestaEGLD   = ESDT("VEGLD-2b9319")
+	Vesta       = ESDT("VST-c40502")
+	USDC        = ESDT("USDC-c76f1f")
+	OURO        = ESDT("OURO-9ecd6a")
 
 	Super = ESDT("SUPER-507aa6")
 	XLH   = ESDT("XLH-8daa50")
@@ -130,6 +133,7 @@ var (
 
 	//NFTs
 	SnakeNFT = SFT("DEMIOU-6d1b5c")
+	SnakeSFT = SFT("DEMIOU-704b5c-01")
 
 	//Liquidity Pools
 	EGLDSuperLP = MvxAddress("erd1qqqqqqqqqqqqqpgqdx6z3sauy49c5k6c6lwhjqclrfwlxlud2jpsvwj5dp")
@@ -160,10 +164,10 @@ var (
 	DHV3              = MvxAddress("erd1qqqqqqqqqqqqqpgqc0e2y2fsv8mcxja6vqz7k7wh33mtclj027rsxry8a2") //LiquidStake Private Fee Vault (DEX Fee Vault)
 	DHV4              = MvxAddress("erd1qqqqqqqqqqqqqpgqu43elpctq9kce7e2nak6vxdlwrqrkft027rsek5fsc") //GSC Private Fee Vault
 
-	DH           	  = MvxAddress("erd1qrp72xhyn6vd5jrsvzkx32cecszuvh9yka0escx7j977cw8yk77qyup3zq") //Demi External Farmer
-	DH_CD        	  = MvxAddress("erd1qe8kudxwzen5hgxcmws9jrrtg6au97j974gtgrml6amnzlmmcetsv02gps") //CD External Farmer
-	DH_Vesta     	  = MvxAddress("erd1ea7hlq9zuvjgqyqk3px43ehp9vxpql64yqzvpsvmnfgur4szwgjqcdenkt") //Vesta External Farmer                                                        //Vesta External Farmer
-	DH_Bloodshed 	  = MvxAddress("erd16f3qfmpdhcgdv2ygwj43n2x08vnmfckvq8z976cs85ued5tx003scj60vd") //Bloodhsed External Farmer
+	DH           = MvxAddress("erd1qrp72xhyn6vd5jrsvzkx32cecszuvh9yka0escx7j977cw8yk77qyup3zq") //Demi External Farmer
+	DH_CD        = MvxAddress("erd1qe8kudxwzen5hgxcmws9jrrtg6au97j974gtgrml6amnzlmmcetsv02gps") //CD External Farmer
+	DH_Vesta     = MvxAddress("erd1ea7hlq9zuvjgqyqk3px43ehp9vxpql64yqzvpsvmnfgur4szwgjqcdenkt") //Vesta External Farmer                                                        //Vesta External Farmer
+	DH_Bloodshed = MvxAddress("erd16f3qfmpdhcgdv2ygwj43n2x08vnmfckvq8z976cs85ued5tx003scj60vd") //Bloodhsed External Farmer
 
 	//Addresses
 
